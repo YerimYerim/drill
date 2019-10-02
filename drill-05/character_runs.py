@@ -17,6 +17,7 @@ while True:
         x += 10
         delay(0.04)
         get_events()
+        
     elif x >= 800:
         if x > 1600:
             x = 0
