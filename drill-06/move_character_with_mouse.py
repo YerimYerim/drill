@@ -42,7 +42,6 @@ px, py = KPU_WIDTH // 2, KPU_HEIGHT // 2
 def move(p1,p2):
     global px, py
     global i
-
     t = i / 100
     px = (1-t)*p1[0]+t*p2[0]
     py = (1-t)*p1[1]+t*p2[1]
@@ -52,7 +51,6 @@ while running:
     kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
     if ismove:
         i += 2
-
         move((px, py), (goal_x, goal_y))
     if px > goal_x:
         character.clip_draw(frame * 100, 100 * 0, 100, 100, px - 50, py + 50)
