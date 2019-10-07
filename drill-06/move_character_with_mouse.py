@@ -47,18 +47,18 @@ def move(p1,p2):
     px = (1-t)*p1[0]+t*p2[0]
     py = (1-t)*p1[1]+t*p2[1]
 
-
-
 while running:
     clear_canvas()
     kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
     if ismove:
-        i += 1
+        i += 2
+
         move((px, py), (goal_x, goal_y))
     if px > goal_x:
         character.clip_draw(frame * 100, 100 * 0, 100, 100, px - 50, py + 50)
     else:
         character.clip_draw(frame * 100, 100 * 1, 100, 100, px - 50, py + 50)
+
     cusor.clip_draw(0, 0, 100, 100, x, y)
     update_canvas()
     frame = (frame + 1) % 8
