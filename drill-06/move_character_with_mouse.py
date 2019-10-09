@@ -49,7 +49,7 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
         else:
             character.clip_draw(frame * 100, 100 * 1, 100, 100, px, py)
 
-        if i > 100:
+        if i == 100:
             i = 0
             case += 1
         else:
@@ -68,7 +68,7 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
         else:
             character.clip_draw(frame * 100, 100 * 1, 100, 100, px, py)
 
-        if i > 100:
+        if i == 100:
             i = 0
             case += 1
         else:
@@ -87,12 +87,11 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
         else:
             character.clip_draw(frame * 100, 100 * 1, 100, 100, px, py)
 
-        if i > 100:
+        if i == 100:
             i = 0
             case += 1
         else:
-            pass
-        i += 2
+            i += 2
     # draw p4-p5
     elif case == 3:
         t = i / 100
@@ -105,7 +104,7 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
             character.clip_draw(frame * 100, 100 * 0, 100, 100, px, py)
         else:
             character.clip_draw(frame * 100, 100 * 1, 100, 100, px, py)
-        if i > 100:
+        if i == 100:
             i = 0
             case += 1
         else:
@@ -124,7 +123,7 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
         else:
             character.clip_draw(frame * 100, 100 * 1, 100, 100, px, py)
 
-        if i > 100:
+        if i == 100:
             i = 0
             case += 1
         else:
@@ -142,7 +141,7 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
             character.clip_draw(frame * 100, 100 * 0, 100, 100, px - 50, py)
         else:
             character.clip_draw(frame * 100, 100 * 1, 100, 100, px - 50, py)
-        if i > 100:
+        if i == 100:
             i = 0
             case += 1
         else:
@@ -159,7 +158,7 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
             character.clip_draw(frame * 100, 100 * 0, 100, 100, px, py)
         else:
             character.clip_draw(frame * 100, 100 * 1, 100, 100, px, py)
-        if i > 100:
+        if i == 100:
             i = 0
             case += 1
         else:
@@ -176,7 +175,7 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
             character.clip_draw(frame * 100, 100 * 0, 100, 100, px, py)
         else:
             character.clip_draw(frame * 100, 100 * 1, 100, 100, px, py)
-        if i > 100:
+        if i == 100:
             i = 0
             case += 1
         else:
@@ -193,7 +192,7 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
             character.clip_draw(frame * 100, 100 * 0, 100, 100, px, py)
         else:
             character.clip_draw(frame * 100, 100 * 1, 100, 100, px, py)
-        if i > 100:
+        if i == 100:
             i = 0
             case += 1
         else:
@@ -210,7 +209,7 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
             character.clip_draw(frame * 100, 100 * 0, 100, 100, px, py)
         else:
             character.clip_draw(frame * 100, 100 * 1, 100, 100, px, py)
-        if i > 100:
+        if i == 100:
             i = 0
             case += 1
         else:
