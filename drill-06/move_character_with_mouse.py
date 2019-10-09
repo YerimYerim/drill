@@ -9,8 +9,8 @@ def makerandomPoint():
     global p1, p2, p3, p4, p5, p6, p7, p8, p9, p10
     global random_numX
     global random_numY
-    random_numX = [random.randint(100, 900) for n in range(10)]
-    random_numY = [random.randint(100, 900) for n in range(10)]
+    random_numX = [random.randint(100, 1000) for n in range(10)]
+    random_numY = [random.randint(200, 700) for n in range(10)]
     p1 = (random_numX[0], random_numY[0])
     p2 = (random_numX[1], random_numY[1])
     p3 = (random_numX[2], random_numY[2])
@@ -40,9 +40,9 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
     #왼쪽이 디폴트
     if case == 0:
         t = i / 100
-        px = ((-t ** 3 + 2 * t ** 2 - t) * p4[0] + (3 * t ** 3 - 5 * t ** 2 + 2) * p1[0] + (
+        px = ((-t ** 3 + 2 * t ** 2 - t) * p10[0] + (3 * t ** 3 - 5 * t ** 2 + 2) * p1[0] + (
                 -3 * t ** 3 + 4 * t ** 2 + t) * p2[0] + (t ** 3 - t ** 2) * p3[0]) / 2
-        py = ((-t ** 3 + 2 * t ** 2 - t) * p4[1] + (3 * t ** 3 - 5 * t ** 2 + 2) * p1[1] + (
+        py = ((-t ** 3 + 2 * t ** 2 - t) * p10[1] + (3 * t ** 3 - 5 * t ** 2 + 2) * p1[1] + (
                 -3 * t ** 3 + 4 * t ** 2 + t) * p2[1] + (t ** 3 - t ** 2) * p3[1]) / 2
         if p1[0] > p2[0]:
             character.clip_draw(frame * 100, 100 * 0, 100, 100, px, py)
@@ -138,9 +138,9 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
                 -3 * t ** 3 + 4 * t ** 2 + t) * p7[1] + (t ** 3 - t ** 2) * p8[1]) / 2
 
         if p6[0] > p7[0]:
-            character.clip_draw(frame * 100, 100 * 0, 100, 100, px - 50, py)
+            character.clip_draw(frame * 100, 100 * 0, 100, 100, px, py)
         else:
-            character.clip_draw(frame * 100, 100 * 1, 100, 100, px - 50, py)
+            character.clip_draw(frame * 100, 100 * 1, 100, 100, px, py)
         if i == 100:
             i = 0
             case += 1
@@ -187,7 +187,6 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
                 -3 * t ** 3 + 4 * t ** 2 + t) * p10[0] + (t ** 3 - t ** 2) * p1[0]) / 2
         py = ((-t ** 3 + 2 * t ** 2 - t) * p8[1] + (3 * t ** 3 - 5 * t ** 2 + 2) * p9[1] + (
                 -3 * t ** 3 + 4 * t ** 2 + t) * p10[1] + (t ** 3 - t ** 2) * p1[1]) / 2
-
         if p9[0] > p10[0]:
             character.clip_draw(frame * 100, 100 * 0, 100, 100, px, py)
         else:
@@ -217,6 +216,8 @@ def move(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10):
 
     elif case == 10:
         case = 0
+        i = 0
+
 
 
 makerandomPoint()
@@ -228,7 +229,17 @@ while running:
     #character.clip_draw(frame * 100, 100 * 0, 100, 100, px - 50, py + 50)
     #elif dir is 1:
     #    character.clip_draw(frame * 100, 100 * 1, 100, 100, px - 50, py + 50)
-    print(p1)
+#    draw_rectangle(p1[0], p1[1], p1[0] + 10, p1[1] + 10)
+ #   draw_rectangle(p2[0], p2[1], p2[0] + 10, p2[1] + 10)
+#  draw_rectangle(p3[0], p3[1], p3[0] + 10, p3[1] + 10)
+ #   draw_rectangle(p4[0], p4[1], p4[0] + 10, p4[1] + 10)
+  #  draw_rectangle(p5[0], p5[1], p5[0] + 10, p5[1] + 10)
+   # draw_rectangle(p6[0], p6[1], p6[0] + 10, p6[1] + 10)
+    #draw_rectangle(p7[0], p7[1], p7[0] + 10, p7[1] + 10)
+    #draw_rectangle(p8[0], p8[1], p8[0] + 10, p8[1] + 10)
+#    draw_rectangle(p9[0], p9[1], p9[0] + 10, p9[1] + 10)
+ #   draw_rectangle(p10[0], p10[1], p10[0] + 10, p10[1] + 10)
+  #  print(p1)
     update_canvas()
     frame = (frame + 1) % 8
     delay(0.05)
