@@ -97,6 +97,9 @@ while running:
         BigBall.update()
         BigBall.draw()
 
+    for Ball in balls:
+        Ball.update()
+        Ball.draw()
 
 
 
