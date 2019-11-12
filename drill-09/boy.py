@@ -1,7 +1,9 @@
 from pico2d import *
+import game_world
+from ball import *
 
 # Boy Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER , SHIFT_DOWN,SHIFT_UP = range(7)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER , SHIFT_DOWN,SHIFT_UP , SPACE  = range(8)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -10,11 +12,15 @@ key_event_table = {
     (SDL_KEYUP, SDLK_LEFT): LEFT_UP,
     (SDL_KEYDOWN, SDLK_LSHIFT): SHIFT_DOWN,
     (SDL_KEYUP, SDLK_LSHIFT): SHIFT_UP,
+    (SDL_KEYDOWN, SDLK_SPACE): SPACE
 
 }
 
 
 # Boy States
+
+
+
 class IdleState:
     @staticmethod
     def enter(boy, event):
@@ -30,12 +36,18 @@ class IdleState:
 
     @staticmethod
     def exit(boy, event):
+        if event == SPACE:
+            boy.fire_ball()
+
         pass
 
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
         boy.timer -= 1
+        if boy.timer == 0:
+            boy.add_event(SLEEP_TIMER)
+
 
     @staticmethod
     def draw(boy):
@@ -43,7 +55,25 @@ class IdleState:
             boy.image.clip_draw(boy.frame * 100, 300, 100, 100, boy.x, boy.y)
         else:
             boy.image.clip_draw(boy.frame * 100, 200, 100, 100, boy.x, boy.y)
+class SleepState:
+    @staticmethod
+    def enter(boy,event):
+        boy.frame = 0
+    @staticmethod
+    def exit(boy, event):
+        pass
+    @staticmethod
+    def do(boy):
+        boy.frame = (boy.frame + 1) % 8
 
+    @staticmethod
+    def draw(boy):
+        if boy.dir == 1:
+            boy.image.clip_composite_draw(boy.frame * 100, 300, 100, 100,
+                                          3.141592/2, '', boy.x - 25, boy.y - 25, 100, 100)
+        else:
+            boy.image.clip_composite_draw(boy.frame * 100, 200, 100, 100,
+                                          -3.141592 / 2, '', boy.x + 25, boy.y - 25, 100, 100)
 
 class RunState:
     @staticmethod
@@ -60,6 +90,8 @@ class RunState:
 
     @staticmethod
     def exit(boy, event):
+        if event == SPACE:
+            boy.fire_ball()
         pass
 
     @staticmethod
@@ -116,11 +148,14 @@ class DashState:
 
 next_state_table = {
     IdleState: {RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
-                SHIFT_DOWN : IdleState , SHIFT_UP: IdleState},
+                SHIFT_DOWN : IdleState , SHIFT_UP: IdleState , SLEEP_TIMER: SleepState , SPACE: IdleState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState,
                LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState
-               , SHIFT_DOWN: DashState, SHIFT_UP: RunState},
-    DashState: {LEFT_UP: IdleState, RIGHT_UP: IdleState, SHIFT_UP: RunState, SHIFT_DOWN: RunState}
+               , SHIFT_DOWN: DashState, SHIFT_UP: RunState , SPACE: RunState},
+    DashState: {LEFT_UP: IdleState, RIGHT_UP: IdleState, SHIFT_UP: RunState, SHIFT_DOWN: RunState},
+    SleepState: {LEFT_DOWN: RunState, RIGHT_DOWN: RunState,
+                 LEFT_UP: RunState, RIGHT_UP: RunState}
+
 }
 
 
@@ -168,3 +203,7 @@ class Boy:
             key_event = key_event_table[(event.type, event.key)]
             self.add_event(key_event)
         pass
+
+    def fire_ball(self):
+        ball = Ball(self.x, self.y, self.dir*3)
+        game_world.add_object(ball, 1)
